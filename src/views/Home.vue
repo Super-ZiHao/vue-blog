@@ -1,18 +1,23 @@
 <script lang="ts" setup>
-import { Fold } from "@element-plus/icons-vue";
+import Menu from '@/components/Menu.vue';
+import { ref } from 'vue';
+const isOpen = ref(false);
+
+const handleOpen = () => {
+  isOpen.value = !isOpen.value;
+};
 </script>
 
 <template>
   <div class="container">
     <div class="flex items-center column enlarge-animation">
-      <h1 class="fw-400 fs-28">ZH-Blog</h1>
-      <div class="mt-20 mb-20 slogan">
-        只要朝着一个方向努力，一切都会变的得心应手
-      </div>
-      <div class="goBlog">Enter Blog</div>
+      <h1 class="fw-400 fs-28 no-wrap">ZH-Blog</h1>
+      <div class="mt-20 mb-20 slogan text-center">只要朝着一个方向努力，一切都会变的得心应手</div>
+      <div class="goBlog no-wrap">Enter Blog</div>
     </div>
   </div>
-  <Fold class="menu-icon" />
+  <div @click="handleOpen" :class="`menu-icon ${isOpen ? 'open' : ''}`"><span></span><span></span><span></span></div>
+  <Menu :open="isOpen" />
 </template>
 
 <style lang="scss" scoped>
@@ -54,13 +59,52 @@ import { Fold } from "@element-plus/icons-vue";
 
 .menu-icon {
   position: fixed;
+  top: 5%;
+  right: 4%;
   z-index: 10;
-  top: 40px;
-  right: 60px;
-  width: 32px;
-  height: 32px;
-  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  overflow: hidden;
+  width: 50px;
+  height: 50px;
   cursor: pointer;
+  transition: all 0.3s;
+  span {
+    position: absolute;
+    width: 60%;
+    height: 2.5px;
+    background-color: #fff;
+    transition: all 0.3s;
+  }
+  span:nth-of-type(1) {
+    top: 30%;
+  }
+  span:nth-of-type(3) {
+    bottom: 30%;
+  }
+  &:hover {
+    background-color: #21c31c;
+  }
+  &.open {
+    background-color: #dbdbd8;
+    &:hover {
+      background-color: #21c31c;
+    }
+    span:nth-of-type(1) {
+      top: 50%;
+      transform: translateY(-50%) rotate(45deg);
+    }
+    span:nth-of-type(2) {
+      opacity: 0;
+    }
+    span:nth-of-type(3) {
+      bottom: 50%;
+      transform: translateY(50%) rotate(-45deg);
+    }
+  }
 }
 
 @keyframes enlarge {

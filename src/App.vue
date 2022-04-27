@@ -10,5 +10,8 @@
   padding: 0;
   font-family: "PingFang SC";
 }
+ul li {
+  list-style: none;
+}
 
 </style>
