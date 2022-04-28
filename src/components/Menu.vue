@@ -5,33 +5,47 @@ defineProps<{ open: boolean }>();
 <template>
   <div class="fixed w-full h-full" style="z-index: 9px; top: 0; left: 0">
     <div :class="`mask ${open ? 'show' : ''}`"></div>
-    <div :class="`main ${open ? 'open' : ''}`"></div>
-    <ul :class="`menu ${open ? 'show' : ''}`">
-      <li class="menu-item">首页</li>
-      <li class="menu-item">知识里程碑</li>
-      <li class="menu-item">关于我</li>
-    </ul>
+    <div :class="`main ${open ? 'open' : ''}`">
+      <div class="main-bg"></div>
+      <ul :class="`menu ${open ? 'show' : ''}`">
+        <li class="menu-item">首页</li>
+        <li class="menu-item">知识里程碑</li>
+        <li class="menu-item">关于我</li>
+      </ul>
+    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .main {
   position: fixed;
-  top: -50%;
-  right: -70%;
+  top: 0;
+  right: 0;
+  width: 30%;
+  height: 100vh;
+  overflow: hidden;
+  transition: 0.4s all;
+  @media screen and (max-width: 1680px) {
+    width: 40%;
+  }
+  @media screen and (max-width: 1280px) {
+    width: 50%;
+  }
+  transform: translateX(100%);
+  &.open {
+    transform: translateX(0);
+  }
+}
+.main-bg {
+  position: absolute;
   width: 100%;
   height: 200%;
+  left: 10%;
+  top: -10%;
   background-color: #fff;
-  transform: translateX(100%) rotate(12deg);
-  @media screen and (max-width: 700px) {
-    transform: translateX(100%) rotate(0deg);
-  }
-  transition: 0.4s all;
-  &.open {
-    transform: translateX(0) rotate(12deg);
-    @media screen and (max-width: 700px) {
-      transform: translateX(-10%) rotate(0deg);
-    }
+  transform: rotate(12deg);
+  @media screen and (max-width: 600px) {
+    transform: rotate(0deg);
   }
 }
 .mask {
