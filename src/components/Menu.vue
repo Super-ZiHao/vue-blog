@@ -1,13 +1,22 @@
 <script lang="ts" setup>
-defineProps<{ open: boolean }>();
+import { ref } from "vue"
+
+defineProps<{ isOpen: boolean, closeTime: number }>()
+
+const toggle = ref<boolean>(true)
+const handleClose = (tiem: number) => {
+  setTimeout(() => {
+    toggle.value = false
+  }, tiem);
+}
 </script>
 
 <template>
-  <div class="fixed w-full h-full" style="z-index: 9px; top: 0; left: 0">
-    <div :class="`mask ${open ? 'show' : ''}`"></div>
-    <div :class="`main ${open ? 'open' : ''}`">
+  <div class="fixed w-full h-full" :style="{ zIndex: 9, top: 0, left: 0, display: isOpen ? 'block' : 'none' }">
+    <div :class="`mask ${isOpen ? 'show' : ''}`"></div>
+    <div :class="`main ${isOpen ? 'open' : ''}`">
       <div class="main-bg"></div>
-      <ul :class="`menu ${open ? 'show' : ''}`">
+      <ul :class="`menu ${isOpen ? 'show' : ''}`">
         <li class="menu-item">首页</li>
         <li class="menu-item">知识里程碑</li>
         <li class="menu-item">关于我</li>

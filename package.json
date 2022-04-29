@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "element-plus": "^2.1.11",
+    "gsap": "^3.10.4",
     "sass": "^1.51.0",
     "three": "^0.139.2",
     "vue": "^3.2.25",
