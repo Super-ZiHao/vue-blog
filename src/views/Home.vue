@@ -1,23 +1,34 @@
 <script lang="ts" setup>
 import Menu from '@/components/Menu.vue';
 import IconClose from '@/components/IconClose.vue';
+import gasp from 'gsap'
+
 import { ref } from 'vue';
 
 const isOpen = ref(false);
 const toggleOpen = () => {
-  isOpen.value = !isOpen.value
-}
+  isOpen.value = !isOpen.value;
+};
 
+function appscroll(e) {
+  gasp.to('.title', {
+    x: document.documentElement.scrollTop,
+  });
+}
+document.body.onscroll = appscroll;
 </script>
 
 <template>
-  <div class="flex items-center column text-main enlarge-animation">
-    <h1 class="fw-400 fs-28 no-wrap">ZH-Blog</h1>
-    <div class="mt-20 mb-20 slogan text-center">只要朝着一个方向努力，一切都会变的得心应手</div>
-    <div class="goBlog no-wrap">Enter Blog</div>
+  <div :style="{ height: '200vh' }">
+    <div class="flex items-center column text-main enlarge-animation">
+      <h1 class="fw-400 fs-28 no-wrap">ZH-Blog</h1>
+      <div class="mt-20 mb-20 slogan text-center">只要朝着一个方向努力，一切都会变的得心应手</div>
+      <div class="goBlog no-wrap">Enter Blog</div>
+    </div>
+    <div class="title color-white fs-32 fixed">123</div>
   </div>
   <IconClose @click="toggleOpen" :isClose="isOpen" :size="60" />
-  <Menu :isOpen="isOpen" :close-time="400"/>
+  <Menu :isOpen="isOpen" :close-time="400" />
 </template>
 
 <style lang="scss" scoped>
@@ -55,8 +66,6 @@ const toggleOpen = () => {
 .enlarge-animation {
   animation: enlarge 1.2s forwards;
 }
-
-
 
 @keyframes enlarge {
   0% {
