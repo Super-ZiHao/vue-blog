@@ -1,14 +1,25 @@
 <script lang="ts" setup>
-import { defineProps } from 'vue';
-defineProps<{ open: boolean }>();
+import { defineProps, ref, watch } from 'vue';
+const props = defineProps<{ isOpen: boolean; closeTime: number }>();
+const isClose = ref(props.isOpen);
+
+watch(props, newValue => {
+  if (newValue.isOpen === true) {
+    isClose.value = true;
+  } else {
+    setTimeout(() => {
+      isClose.value = false;
+    }, newValue.closeTime);
+  }
+});
 </script>
 
 <template>
-  <div class="fixed w-full h-full" style="z-index: 9px; top: 0; left: 0">
-    <div :class="`mask ${open ? 'show' : ''}`"></div>
-    <div :class="`main ${open ? 'open' : ''}`">
+  <div>
+    <div v-if="isClose" :class="`mask ${isOpen ? 'show' : 'unShow'}`"></div>
+    <div :class="`main ${isOpen ? 'open' : ''}`">
       <div class="main-bg"></div>
-      <ul :class="`menu ${open ? 'show' : ''}`">
+      <ul :class="`menu ${isOpen ? 'show' : ''}`">
         <li class="menu-item">首页</li>
         <li class="menu-item">知识里程碑</li>
         <li class="menu-item">关于我</li>
@@ -55,11 +66,12 @@ defineProps<{ open: boolean }>();
   left: 0;
   width: 100%;
   height: 100%;
-  opacity: 0;
   background-color: rgba($color: #000000, $alpha: 0.3);
-  transition: 0.4s all;
   &.show {
-    opacity: 1;
+    animation: maskAnimation 0.4s forwards;
+  }
+  &.unShow {
+    animation: maskAnimation 0.4s forwards reverse;
   }
 }
 
@@ -79,6 +91,15 @@ defineProps<{ open: boolean }>();
     color: #787a77;
     font-size: 24px;
     height: 40px;
+  }
+}
+
+@keyframes maskAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 </style>

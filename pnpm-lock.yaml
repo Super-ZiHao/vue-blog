@@ -5,6 +5,7 @@ specifiers:
   '@types/three': ^0.139.0
   '@vitejs/plugin-vue': ^2.3.1
   element-plus: ^2.1.11
+  gsap: ^3.10.4
   sass: ^1.51.0
   three: ^0.139.2
   typescript: ^4.5.4
@@ -15,6 +16,7 @@ specifiers:
 
 dependencies:
   element-plus: 2.1.11_vue@3.2.33
+  gsap: 3.10.4
   sass: 1.51.0
   three: 0.139.2
   vue: 3.2.33
@@ -547,6 +549,10 @@ packages:
     engines: {node: '>= 6'}
     dependencies:
       is-glob: 4.0.3
+    dev: false
+
+  /gsap/3.10.4:
+    resolution: {integrity: sha512-6QatdkKxXCMfvCW4rM++0RqyLQAzFX5nwl3yHS0XPgkZBkiSEY3VZVbMltrdtsbER/xZonLtyHt684wRp4erlQ==}
     dev: false
 
   /has/1.0.3:
