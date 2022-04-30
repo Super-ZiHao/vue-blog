@@ -1,11 +1,13 @@
 <script lang="ts" setup>
 import { defineProps, ref, watch } from 'vue';
+import { useRouter } from 'vue-router';
+import { menuList, isOpenPath } from '@/constant/menu';
 
-const props = defineProps<{ isOpen: boolean; closeTime: number }>();
-const isClose = ref(props.isOpen);
-
+// 是否显示
+const props = defineProps<{ show: boolean; closeTime: number }>();
+const isClose = ref(props.show);
 watch(props, newValue => {
-  if (newValue.isOpen === true) {
+  if (newValue.show === true) {
     isClose.value = true;
   } else {
     setTimeout(() => {
@@ -13,17 +15,27 @@ watch(props, newValue => {
     }, newValue.closeTime);
   }
 });
+
+// 路由
+const router = useRouter();
+const handleOpenPath = (path: string) => {
+  const isOpen = !!isOpenPath.find(item => item === path);
+  // 判断是否打开一个新窗口
+  if (isOpen) {
+    window.open(`/#/${path}`);
+  } else {
+    router.push(`?id=${path}`);
+  }
+};
 </script>
 
 <template>
   <div>
-    <div :class="`mask ${isOpen ? 'show' : 'unShow'}`" :style="{ display: isClose ? 'block' : 'none' }"></div>
-    <div :class="`main ${isOpen ? 'open' : ''}`">
+    <div :class="`mask ${show ? 'show' : 'unShow'}`" :style="{ display: isClose ? 'block' : 'none' }"></div>
+    <div :class="`main ${show ? 'open' : ''}`">
       <div class="main-bg"></div>
-      <ul :class="`menu ${isOpen ? 'show' : ''}`">
-        <li class="menu-item">首页</li>
-        <li class="menu-item">知识里程碑</li>
-        <li class="menu-item">关于我</li>
+      <ul :class="`menu ${show ? 'show' : ''}`">
+        <li class="menu-item transition" v-for="item in menuList" :key="item.id" @click="handleOpenPath(item.path)">{{ item.title }}</li>
       </ul>
     </div>
   </div>
@@ -89,9 +101,18 @@ watch(props, newValue => {
     opacity: 1;
   }
   .menu-item {
+    display: flex;
+    align-items: center;
     color: #787a77;
     font-size: 24px;
     height: 40px;
+    cursor: pointer;
+    &:hover {
+      color: #575857;
+    }
+    & + .menu-item {
+      margin-top: 8px;
+    }
   }
 }
 

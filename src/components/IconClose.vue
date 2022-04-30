@@ -4,7 +4,6 @@ const props = defineProps<{
   size: number;
   isClose: boolean;
 }>();
-console.log(props.size)
 </script>
 
 <template>

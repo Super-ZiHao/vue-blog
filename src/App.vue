@@ -13,13 +13,14 @@
 ul li {
   list-style: none;
 }
-body {
-  background-color: #151515;
-}
 ::-webkit-scrollbar {
   width: 4px;
 }
 ::-webkit-scrollbar-thumb {
   background-color: #275ca2;
+}
+
+.transition {
+  transition: all 0.3s linear;
 }
 </style>
