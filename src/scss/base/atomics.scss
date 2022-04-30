@@ -103,6 +103,9 @@
 %no-wrap {
   white-space: nowrap;
 }
+%font-wrap {
+  word-break: break-all;
+}
 %text-center {
   text-align: center;
 }

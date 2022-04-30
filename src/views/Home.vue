@@ -22,7 +22,7 @@ const toggleOpen = () => {
     </div>
     <!-- <div class="box title fs-32">123</div> -->
   </div>
-  <IconClose @click="toggleOpen" :isClose="isOpen" :size="60" />
+  <IconClose @click="toggleOpen" :isClose="isOpen" :size="50" />
   <Menu :show="isOpen" :close-time="400" />
 </template>
 

@@ -109,6 +109,7 @@ $atomics: (
   'vw-full',
   'text-center',
   'no-wrap',
+  'font-wrap',
   'color-white',
   'color-black',
   'bg-white',
@@ -133,7 +134,7 @@ $distanceDirection: (
   'b': '-bottom',
   'l': '-left'
 );
-$distance: (20);
+$distance: (20, 32);
 
 @each $key, $value in $distanceDirection {
   @each $number in $distance {
