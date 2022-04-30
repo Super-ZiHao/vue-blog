@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { defineProps, ref, watch } from 'vue';
+
 const props = defineProps<{ isOpen: boolean; closeTime: number }>();
 const isClose = ref(props.isOpen);
 
@@ -16,7 +17,7 @@ watch(props, newValue => {
 
 <template>
   <div>
-    <div v-if="isClose" :class="`mask ${isOpen ? 'show' : 'unShow'}`"></div>
+    <div :class="`mask ${isOpen ? 'show' : 'unShow'}`" :style="{ display: isClose ? 'block' : 'none' }"></div>
     <div :class="`main ${isOpen ? 'open' : ''}`">
       <div class="main-bg"></div>
       <ul :class="`menu ${isOpen ? 'show' : ''}`">
@@ -71,7 +72,7 @@ watch(props, newValue => {
     animation: maskAnimation 0.4s forwards;
   }
   &.unShow {
-    animation: maskAnimation 0.4s forwards reverse;
+    animation: RmaskAnimation 0.4s forwards;
   }
 }
 
@@ -100,6 +101,14 @@ watch(props, newValue => {
   }
   100% {
     opacity: 1;
+  }
+}
+@keyframes RmaskAnimation {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
 </style>

@@ -16,4 +16,10 @@ ul li {
 body {
   background-color: #151515;
 }
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #275ca2;
+}
 </style>
