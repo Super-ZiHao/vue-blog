@@ -13,7 +13,7 @@ const openLearning = (path: string | undefined) => {
   <div class="main">
     <div class="time-line-box">
       <TimeLine v-for="item in HistoryDataList" :key="item.id" :time="item.time">
-        <MessageBox background-color="#0096a4">
+        <MessageBox background-color="rgb(121, 179, 226)">
           <div :class="`transition ${item.path ? 'title' : ''}`" @click="openLearning(item.path)">{{ item.title }}</div>
         </MessageBox>
       </TimeLine>
@@ -37,9 +37,11 @@ const openLearning = (path: string | undefined) => {
 .title {
   padding: 8px;
   border-radius: 8px;
-  color: var(--special-color);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
   &:hover {
-    background-color: #e7eff8;
+    background-color: var(--subtle-color);
   }
   &:active {
     box-shadow: inset 0 0 30px var(--shadow-color);

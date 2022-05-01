@@ -22,6 +22,7 @@ const handleOpenPath = (path: string) => {
   const isOpen = !!isBlogMenu.find(item => item === path);
   // 判断是否打开一个新窗口
   if (isOpen) {
+    sessionStorage.setItem('menu-path', path)
     window.open(`/#/blog/${path}`);
   } else {
     router.push(`?id=${path}`);

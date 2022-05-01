@@ -1,7 +1,10 @@
 <script lang="ts" setup>
+import { useRoute } from 'vue-router';
 import { ElMenu, ElMenuItem } from 'element-plus';
 import { useBlogMenuList } from '@/utils/hooks';
 
+const route = useRoute();
+const currentPath = route.path.split('/')[2];
 const blogMenuList = useBlogMenuList();
 </script>
 
@@ -9,7 +12,7 @@ const blogMenuList = useBlogMenuList();
   <div :style="{ backgroundColor: '#2e2e2e', overflow: 'hidden' }">
     <header class="flex items-center justify-between p-20 header" style="border-bottom: 1px solid #cecece">
       <div>Logo</div>
-      <ElMenu mode="horizontal" router :ellipsis="false">
+      <ElMenu mode="horizontal" router :ellipsis="false" :default-active="currentPath">
         <ElMenuItem v-for="item in blogMenuList" :key="item.id" :index="item.path">{{ item.title }}</ElMenuItem>
       </ElMenu>
     </header>
