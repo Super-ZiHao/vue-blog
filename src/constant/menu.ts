@@ -36,4 +36,4 @@ export const menuList: menuListType[] = [
   }
 ];
 
-export const isOpenPath: string[] = ['knowledge-milestone', 'interesting-style', 'sample-reels', 'every-day'];
+export const isBlogMenu: string[] = ['knowledge-milestone', 'interesting-style', 'sample-reels', 'every-day'];

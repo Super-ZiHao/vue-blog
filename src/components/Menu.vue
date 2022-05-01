@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { defineProps, ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
-import { menuList, isOpenPath } from '@/constant/menu';
+import { menuList, isBlogMenu } from '@/constant/menu';
 
 // 是否显示
 const props = defineProps<{ show: boolean; closeTime: number }>();
@@ -19,10 +19,10 @@ watch(props, newValue => {
 // 路由
 const router = useRouter();
 const handleOpenPath = (path: string) => {
-  const isOpen = !!isOpenPath.find(item => item === path);
+  const isOpen = !!isBlogMenu.find(item => item === path);
   // 判断是否打开一个新窗口
   if (isOpen) {
-    window.open(`/#/${path}`);
+    window.open(`/#/blog/${path}`);
   } else {
     router.push(`?id=${path}`);
   }

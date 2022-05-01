@@ -1,24 +1,11 @@
-import { isOpenPath, menuList, menuListType } from '@/constant/menu';
+import { isBlogMenu, menuList, menuListType } from '@/constant/menu';
+import { useBlogMenuList } from '@/utils/hooks';
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 
-// 将 Menu 中的路由筛选出来
-const getRouteList: () => menuListType[] = () => {
-  const arr: menuListType[] = [];
-  menuList.forEach(item => {
-    isOpenPath.some(path => {
-      if (item.path === path) {
-        arr.push(item);
-        return true;
-      }
-      return false;
-    });
-  });
-  return arr;
-};
 // 将筛选出来的进行对象修正
-const routeList = getRouteList().map(item => {
+const routeList = useBlogMenuList().value.map(item => {
   return {
-    path: `/${item.path}`,
+    path: `${item.path}`,
     component: () => import(`../views/${item.title}.vue`)
   };
 });
@@ -32,7 +19,11 @@ const routes: RouteRecordRaw[] = [
     path: '/home',
     component: () => import('@/views/Home.vue')
   },
-  ...routeList
+  {
+    path: '/blog',
+    component: () => import('@/views/Blog.vue'),
+    children: [...routeList]
+  }
 ];
 
 const router = createRouter({
