@@ -17,7 +17,7 @@ const blogMenuList = useBlogMenuList();
       </ElMenu>
     </header>
     <main style="background-color: #2e2e2e">
-      <router-view></router-view>
+      <router-view />
     </main>
   </div>
 </template>

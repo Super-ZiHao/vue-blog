@@ -28,8 +28,8 @@ const openLearning = (path: string | undefined) => {
   border-radius: 10px;
   margin: 0 auto;
   width: 90%;
-  height: 100%;
   background-color: #e7eff8;
+  max-width: 1280px;
 }
 .time-line-box {
   padding: 30px;
