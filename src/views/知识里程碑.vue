@@ -27,9 +27,8 @@ const openLearning = (path: string | undefined) => {
   justify-content: center;
   border-radius: 10px;
   margin: 0 auto;
-  width: 90%;
-  background-color: #e7eff8;
-  max-width: 1280px;
+  background-color: #2e2e2e;
+  max-width: 1368px;
 }
 .time-line-box {
   padding: 30px;
@@ -37,14 +36,14 @@ const openLearning = (path: string | undefined) => {
 .title {
   padding: 8px;
   border-radius: 8px;
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  border: 1px solid var(--border-color);
+  background-color: var(--special-bg-color);
+  color: var(--special-text-color);
   &:hover {
-    background-color: var(--subtle-color);
+    /* background-color: var(--subtle-color); */
+    box-shadow: inset 0 0 10px var(--special-shadow-color);
   }
   &:active {
-    box-shadow: inset 0 0 30px var(--shadow-color);
+    box-shadow: inset 0 0 30px var(--special-shadow-color);
   }
   cursor: pointer;
 }
