@@ -10,14 +10,14 @@ const blogMenuList = useBlogMenuList();
 
 <template>
   <div>
-    <header class="flex items-center justify-between pl-20 pr-20 header" style="border-bottom: 1px solid #cecece">
+    <header class="flex items-center justify-between pl-20 pr-20 header">
       <div class="logo"/>
       <ElMenu class="menu" mode="horizontal" router :default-active="currentPath" :unique-opened="true">
         <ElMenuItem v-for="item in blogMenuList" :key="item.id" :index="item.path">{{ item.title }}</ElMenuItem>
       </ElMenu>
     </header>
-    <main style="background-color: #2e2e2e">
-      <router-view></router-view>
+    <main style="background-color: #2e2e2e;">
+      <router-view />
     </main>
   </div>
 </template>
@@ -29,11 +29,14 @@ header {
   left: 0;
   width: 100%;
   height: 60px;
-  background-color: #ffffff;
   z-index: 10;
+  background-color: var(--bg-color);
+}
+::v-deep(.el-menu--horizontal) {
+  border: none;
 }
 main {
-  padding-top: 20px;
+  padding: 20px;
   margin-top: 60px;
   min-height: calc(100vh - 60px);
 }
@@ -42,9 +45,5 @@ main {
   flex: 1;
   display: flex;
   justify-content: end;
-  @media screen and (max-width: 600px){
-    flex: 0;
-    width: 64px;
-  }
 }
 </style>

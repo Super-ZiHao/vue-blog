@@ -16,24 +16,14 @@ export const menuList: menuListType[] = [
   },
   {
     id: 2,
-    title: '有趣的样式',
-    path: 'interesting-style'
+    title: '书香门第',
+    path: 'index'
   },
   {
     id: 3,
-    title: '作品集',
-    path: 'sample-reels'
-  },
-  {
-    id: 4,
-    title: '每日一问',
-    path: 'every-day'
-  },
-  {
-    id: 5,
     title: '关于我',
     path: 'aboute'
   }
 ];
 
-export const isBlogMenu: string[] = ['knowledge-milestone', 'interesting-style', 'sample-reels', 'every-day'];
+export const isBlogMenu: string[] = ['knowledge-milestone', 'index'];

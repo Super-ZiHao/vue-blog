@@ -10,7 +10,7 @@ const openLearning = (path: string | undefined) => {
 </script>
 
 <template>
-  <div class="main">
+  <div class="main flex justify-center radius-12">
     <div class="time-line-box">
       <TimeLine v-for="item in HistoryDataList" :key="item.id" :time="item.time">
         <MessageBox background-color="rgb(121, 179, 226)">
@@ -23,13 +23,9 @@ const openLearning = (path: string | undefined) => {
 
 <style lang="scss" scoped>
 .main {
-  display: flex;
-  justify-content: center;
-  border-radius: 10px;
   margin: 0 auto;
-  width: 90%;
-  height: 100%;
-  background-color: #e7eff8;
+  background-color: var(--bg-color);
+  max-width: 1368px;
 }
 .time-line-box {
   padding: 30px;
@@ -37,14 +33,14 @@ const openLearning = (path: string | undefined) => {
 .title {
   padding: 8px;
   border-radius: 8px;
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  border: 1px solid var(--border-color);
+  background-color: var(--special-bg-color);
+  color: var(--special-text-color);
   &:hover {
-    background-color: var(--subtle-color);
+    /* background-color: var(--subtle-color); */
+    box-shadow: inset 0 0 10px var(--special-shadow-color);
   }
   &:active {
-    box-shadow: inset 0 0 30px var(--shadow-color);
+    box-shadow: inset 0 0 30px var(--special-shadow-color);
   }
   cursor: pointer;
 }
