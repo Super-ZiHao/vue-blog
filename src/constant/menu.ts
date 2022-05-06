@@ -16,7 +16,7 @@ export const menuList: menuListType[] = [
   },
   {
     id: 2,
-    title: '书香门第',
+    title: '黄金屋',
     path: 'index'
   },
   {
