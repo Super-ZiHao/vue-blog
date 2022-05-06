@@ -8,7 +8,9 @@ const isOpen = ref(false);
 const toggleOpen = () => {
   isOpen.value = !isOpen.value;
 };
-
+const goBlog = () => {
+  open('/#/blog')
+}
 </script>
 
 <template>
@@ -16,8 +18,8 @@ const toggleOpen = () => {
     <div class="box home">
       <div class="flex items-center column text-main enlarge-animation">
         <h1 class="fw-400 fs-28 no-wrap">ZH-Blog</h1>
-        <div class="mt-20 mb-20 slogan text-center">只要朝着一个方向努力，一切都会变的得心应手</div>
-        <div class="goBlog no-wrap">Enter Blog</div>
+        <div class="mt-20 mb-20 slogan text-center">路漫漫其修远兮,吾将上下而求索</div>
+        <div class="goBlog no-wrap" @click="goBlog">前往博客</div>
       </div>
     </div>
     <!-- <div class="box title fs-32">123</div> -->

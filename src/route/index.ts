@@ -22,6 +22,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/blog',
     component: () => import('@/views/Blog.vue'),
+    redirect: `/blog/${routeList[0].path}`,
     children: [...routeList]
   }
 ];
