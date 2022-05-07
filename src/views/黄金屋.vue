@@ -1,6 +1,8 @@
 <script lang="ts" setup>
-import { BlogModule } from '@/constant/blog';
+import { ElDivider } from 'element-plus'
+import { BlogModule, Article } from '@/constant/blog';
 import { BlogTitleEnum } from '@/constant/enum';
+import { getTime } from '@/utils/index';
 
 const handleGoPath = (path: string | undefined) => {
   if (!path) return;
@@ -24,7 +26,30 @@ const handleGoPath = (path: string | undefined) => {
       </div>
     </aside>
     <div class="main">
-      <div v-for="(item, index) in [1, 2, 3, 4, 5]" :class="`item radius-12 ${index > 0 ? 'mt-16' : ''}`" :key="item"></div>
+      <div v-for="(item, index) in Article" :class="`flex items-center justify-between item radius-12 p-8 ${index > 0 ? 'mt-16' : ''}`" :key="item.title">
+        <!-- <div class="pr-12" style="width: calc(100% - 100px)"> -->
+        <div>
+          <div class="flex items-center fs-12 color-0">
+            <div>{{ getTime(item.time) }}</div>
+            <ElDivider v-if="item.subtitle" direction="vertical" />
+            <div v-if="item.subtitle">{{ item.subtitle }}</div>
+          </div>
+          <div class="mt-8 fw-bold fs-18">
+            {{ item.title }}
+          </div>
+          <div class="mt-12" v-html="item.synopsis"></div>
+          <div class="mt-12" v-if="item.front.length > 0">
+            <span>前置：</span>
+            <span v-for="front, frontIndex in item.front">
+              <ElDivider v-if="frontIndex > 0" direction="vertical" />
+              <a :href="front.path" target="_blank" >{{ front.title }}</a>
+            </span>
+          </div>
+        </div>
+        <!-- <div style="width: 100px; height: 100px;">
+          {{ item.icon }}
+        </div> -->
+      </div>
     </div>
   </div>
 </template>
@@ -52,8 +77,6 @@ const handleGoPath = (path: string | undefined) => {
   margin-left: 16px;
   .item {
     width: 100%;
-    height: 400px;
-    max-height: 500px;
     background-color: var(--bg-color);
   }
 }

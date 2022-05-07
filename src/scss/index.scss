@@ -133,7 +133,7 @@ $distanceDirection: (
   't': '-top',
   'r': '-right',
   'b': '-bottom',
-  'l': '-left'
+  'l': '-left',
 );
 $distance: (4, 8, 12, 16, 20, 32);
 
@@ -167,7 +167,7 @@ $radius: (8, 12, 16);
  * 24, 28, 32, 36, 44
 *==========================================================================
 */
-$fontSizes: (14, 28, 32);
+$fontSizes: (12, 14, 18, 28, 32);
 @each $fontSize in $fontSizes {
   .fs-#{$fontSize} {
     font-size: #{$fontSize}px;
@@ -180,7 +180,7 @@ $fontSizes: (14, 28, 32);
  * 400, 500, 600, 700, 800
 *==========================================================================
 */
-$fontWeights: (400);
+$fontWeights: (400, bold);
 @each $fontWeight in $fontWeights {
   .fw-#{$fontWeight} {
     font-weight: #{$fontWeight};
@@ -209,5 +209,20 @@ $transitionTime: ();
 @each $time in $transitionTime {
   .transition-#{$time} {
     transition: all ease math($time, 100) + s;
+  }
+}
+
+/**
+*========================================================================== 
+ * 关于 ———— color
+*==========================================================================
+*/
+
+$colors: (
+  #919aa5: 0,
+);
+@each $color, $index in $colors {
+  .color-#{$index} {
+    color: $color;
   }
 }

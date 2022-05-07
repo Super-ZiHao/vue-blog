@@ -46,6 +46,10 @@ ul li {
   background-color: #275ca2;
 }
 
+a {
+  text-decoration: none;
+}
+
 .transition {
   transition: all 0.3s linear;
 }
