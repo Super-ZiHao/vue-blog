@@ -6,7 +6,7 @@ type ListType = {
   time?: string
 }
 type ModuleType = {
-  title: '每日一问' | '作品集' | '小技巧'
+  title: '每日一问' | '作品集' | '样式的妙用'
   list: ListType[]
 }
 
@@ -58,25 +58,28 @@ export const BlogModule: ModuleType[] = [
     ],
   },
   {
-    title: '小技巧',
+    title: '样式的妙用',
     list: [
       {
         text: '关于打印时候可能会用到的一个样式',
       },
       {
         text: 'clip-path: polygon()'
+      },
+      {
+        text: 'pointer-events: none'
       }
     ],
   },
 ]
-
+type iconType = 'TypeScript' | 'CSS'
 type ArticleType = {
   title: string
   subtitle?: string
   time: string
   synopsis: string
   front: { path: string; title: string }[]
-  icon: string | VueElement
+  icon: iconType
 }
 export const Article: ArticleType[] = [
   {
@@ -84,14 +87,14 @@ export const Article: ArticleType[] = [
     subtitle: 'TypeScript',
     time: '2022-05-01',
     synopsis:
-      '此篇文章于本人在学习 TypeScript 后，于工作中实践有感所写，查看本文章需要有一定的 TypeScript 能力。若还未学习，可点击前置知识学习',
+      '此篇文章于本人在学习 TypeScript 后，于工作中实践有感所写，查看本文章需要有一定的 TypeScript 能力。',
     front: [
       {
         path: 'https://super-zihao.github.io/learning/#/typescript',
         title: 'TypeScript',
       },
     ],
-    icon: 'TypeScript有感',
+    icon: 'TypeScript',
   },
   {
     title: 'Sass 与 Less 的大同小异',
@@ -109,6 +112,6 @@ export const Article: ArticleType[] = [
         title: 'Less'
       },
     ],
-    icon: 'Sass OR Less',
+    icon: 'CSS',
   },
 ]

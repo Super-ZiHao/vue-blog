@@ -4,7 +4,7 @@
   <router-view></router-view>
 </template>
 
-<style style="scss">
+<style lang="scss">
 @import 'element-plus/dist/index.css';
 
 :root {
@@ -47,7 +47,12 @@ ul li {
 }
 
 a {
+  color: #4e5ec2;
   text-decoration: none;
+}
+a:hover {
+  color: #8791d0;
+  text-decoration: underline;
 }
 
 .transition {
@@ -58,7 +63,26 @@ a {
   font-family: '好看的数字';
   src: url('./assets/QianTuXiaoTuTi-2.ttf');
 }
+
 .ff-num {
   font-family: '好看的数字';
+}
+
+.tag {
+  position: absolute;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  width: 90px;
+  height: 90px;
+  font-size: 40px;
+  color: #fff;
+  margin-right: 16px;
+  @media screen and (min-width: 800px) {
+    top: 50%;
+    transform: translateY(-50%);
+  }
 }
 </style>

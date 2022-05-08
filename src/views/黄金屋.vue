@@ -1,8 +1,10 @@
 <script lang="ts" setup>
-import { ElDivider } from 'element-plus'
+import { ElDivider } from 'element-plus';
 import { BlogModule, Article } from '@/constant/blog';
-import { BlogTitleEnum } from '@/constant/enum';
+import { BlogTitleEnum, IconsEnum } from '@/constant/enum';
 import { getTime } from '@/utils/index';
+import TS from '@/components/TS.vue';
+import CSS from '../components/CSS.vue';
 
 const handleGoPath = (path: string | undefined) => {
   if (!path) return;
@@ -26,29 +28,29 @@ const handleGoPath = (path: string | undefined) => {
       </div>
     </aside>
     <div class="main">
-      <div v-for="(item, index) in Article" :class="`flex items-center justify-between item radius-12 p-8 ${index > 0 ? 'mt-16' : ''}`" :key="item.title">
-        <!-- <div class="pr-12" style="width: calc(100% - 100px)"> -->
-        <div>
-          <div class="flex items-center fs-12 color-0">
-            <div>{{ getTime(item.time) }}</div>
-            <ElDivider v-if="item.subtitle" direction="vertical" />
-            <div v-if="item.subtitle">{{ item.subtitle }}</div>
-          </div>
-          <div class="mt-8 fw-bold fs-18">
-            {{ item.title }}
-          </div>
-          <div class="mt-12" v-html="item.synopsis"></div>
-          <div class="mt-12" v-if="item.front.length > 0">
-            <span>前置：</span>
-            <span v-for="front, frontIndex in item.front">
-              <ElDivider v-if="frontIndex > 0" direction="vertical" />
-              <a :href="front.path" target="_blank" >{{ front.title }}</a>
-            </span>
-          </div>
+      <div v-for="(item, index) in Article" :class="`relative item radius-12 p-8 ${index > 0 ? 'mt-16' : ''}`" :key="item.title">
+        <div class="flex items-center fs-12 color-0">
+          <div>{{ getTime(item.time) }}</div>
+          <ElDivider v-if="item.subtitle" direction="vertical" />
+          <div v-if="item.subtitle">{{ item.subtitle }}</div>
         </div>
-        <!-- <div style="width: 100px; height: 100px;">
-          {{ item.icon }}
-        </div> -->
+        <div class="mt-8 fw-bold fs-18">
+          {{ item.title }}
+        </div>
+        <div class="flex items-center justify-between">
+          <div class="synopsis">
+            <div class="mt-12 text">{{ item.synopsis }}</div>
+            <div class="mt-12" v-if="item.front.length > 0">
+              <span>前置：</span>
+              <span v-for="(front, frontIndex) in item.front" :key="front.path">
+                <ElDivider v-if="frontIndex > 0" direction="vertical" />
+                <a :href="front.path" target="_blank">{{ front.title }}</a>
+              </span>
+            </div>
+          </div>
+          <TS v-if="item.icon === IconsEnum.TYPESCRIPT" />
+          <CSS v-if="item.icon === IconsEnum.CSS" />
+        </div>
       </div>
     </div>
   </div>
@@ -79,6 +81,14 @@ const handleGoPath = (path: string | undefined) => {
     width: 100%;
     background-color: var(--bg-color);
   }
+  .synopsis {
+    width: calc(100% - 116px);
+    .text {
+      text-indent: 2rem;
+      font-size: 14px;
+      color: #686868;
+    }
+  }
 }
 
 @media screen and (max-width: 800px) {
@@ -91,6 +101,9 @@ const handleGoPath = (path: string | undefined) => {
   .main {
     margin-top: 16px;
     margin-left: 0;
+    .item {
+      position: relative;
+    }
   }
 }
 </style>
