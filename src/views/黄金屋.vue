@@ -1,12 +1,15 @@
 <script lang="ts" setup>
 import { ElDivider } from 'element-plus';
-import { BlogModule, Article } from '@/constant/blog';
+import { BlogModule, Article, ListType } from '@/constant/blog';
 import { BlogTitleEnum, IconsEnum } from '@/constant/enum';
-import { getTime } from '@/utils/index';
+import { getTime, handleString } from '@/utils/index';
 import TS from '@/components/TS.vue';
 import CSS from '../components/CSS.vue';
 
-const handleGoPath = (path: string | undefined) => {
+const handleGoPath = (path: string | undefined, title: string, list: ListType) => {
+  if (title === BlogTitleEnum.MEI_RI_YI_WEN) {
+    open(`https://super-zihao.github.io/learning/#/every-day?id=_${list.time}、${handleString(list.text)}`);
+  }
   if (!path) return;
   open(path);
 };
@@ -19,7 +22,7 @@ const handleGoPath = (path: string | undefined) => {
         <div class="title p-8">{{ item.title }}</div>
         <ul class="list p-8 fs-14">
           <li class="flex items-center justify-between pt-4 pb-4" v-for="(listItem, listIndex) in item.list" :key="listItem.time">
-            <span class="text cp no-wrap overflow-hidden ellipsis" :title="listItem.text" :style="{ width: item.title !== BlogTitleEnum.MEI_RI_YI_WEN ? '100%' : '75%' }" @click="handleGoPath(listItem.path)"
+            <span class="text cp no-wrap overflow-hidden ellipsis" :title="listItem.text" :style="{ width: item.title !== BlogTitleEnum.MEI_RI_YI_WEN ? '100%' : '75%' }" @click="handleGoPath(listItem.path, item.title, listItem)"
               ><span class="ff-num">{{ listIndex + 1 }}、</span>{{ listItem.text }}</span
             >
             <span class="ff-num">{{ listItem?.time }}</span>
