@@ -6,13 +6,22 @@ import { getTime, handleString } from '@/utils/index';
 import TS from '@/components/TS.vue';
 import CSS from '../components/CSS.vue';
 
+// 左侧打开链接
 const handleGoPath = (path: string | undefined, title: string, list: ListType) => {
   if (title === BlogTitleEnum.MEI_RI_YI_WEN) {
     open(`https://super-zihao.github.io/learning/#/every-day?id=_${list.time}、${handleString(list.text)}`);
   }
+  if ( title === BlogTitleEnum.STYLE ) {
+    open(`https://super-zihao.github.io/learning/#/unusualcss?id=${list.path}`)
+  }
   if (!path) return;
   open(path);
 };
+
+// 打开文章
+const handleOpenArticle = (path: string) => {
+  open(`https://super-zihao.github.io/learning/#/article/${path}`);
+}
 </script>
 
 <template>
@@ -32,27 +41,29 @@ const handleGoPath = (path: string | undefined, title: string, list: ListType) =
     </aside>
     <div class="main">
       <div v-for="(item, index) in Article" :class="`relative item radius-12 p-8 ${index > 0 ? 'mt-16' : ''}`" :key="item.title">
-        <div class="flex items-center fs-12 color-0">
-          <div>{{ getTime(item.time) }}</div>
-          <ElDivider v-if="item.subtitle" direction="vertical" />
-          <div v-if="item.subtitle">{{ item.subtitle }}</div>
-        </div>
-        <div class="mt-8 fw-bold fs-18">
-          {{ item.title }}
-        </div>
-        <div class="flex items-center justify-between">
-          <div class="synopsis">
-            <div class="mt-12 text">{{ item.synopsis }}</div>
-            <div class="mt-12" v-if="item.front.length > 0">
-              <span>前置：</span>
-              <span v-for="(front, frontIndex) in item.front" :key="front.path">
-                <ElDivider v-if="frontIndex > 0" direction="vertical" />
-                <a :href="front.path" target="_blank">{{ front.title }}</a>
-              </span>
-            </div>
+        <div class="cp" @click="handleOpenArticle(item.path)">
+          <div class="flex items-center fs-12 color-0">
+            <div>{{ getTime(item.time) }}</div>
+            <ElDivider v-if="item.subtitle" direction="vertical" />
+            <div v-if="item.subtitle">{{ item.subtitle }}</div>
           </div>
-          <TS v-if="item.icon === IconsEnum.TYPESCRIPT" />
-          <CSS v-if="item.icon === IconsEnum.CSS" />
+          <div class="mt-8 mb-12 fw-bold fs-18">
+            {{ item.title }}
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="synopsis">
+              <div class="text">{{ item.synopsis }}</div>
+            </div>
+            <TS v-if="item.icon === IconsEnum.TYPESCRIPT" />
+            <CSS v-if="item.icon === IconsEnum.CSS" />
+          </div>
+        </div>
+        <div class="mt-12" v-if="item.front.length > 0">
+          <span>前置：</span>
+          <span v-for="(front, frontIndex) in item.front" :key="front.path">
+            <ElDivider v-if="frontIndex > 0" direction="vertical" />
+            <a :href="front.path" target="_blank">{{ front.title }}</a>
+          </span>
         </div>
       </div>
     </div>

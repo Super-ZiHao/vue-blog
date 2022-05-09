@@ -5,7 +5,7 @@ import { HistoryDataList } from '@/constant/historyData';
 
 const openLearning = (path: string | undefined) => {
   if (!path) return;
-  window.open(`https://super-zihao.github.io/learning/#/${path}`);
+  window.open(`https://super-zihao.github.io/learning/#/notes/${path}`);
 };
 </script>
 
