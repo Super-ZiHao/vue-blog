@@ -4,16 +4,13 @@ import ScrollToPlugin, { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 export const animation = () => {
-  gsap.to('.ba', {
+  gsap.to('.layout-1-1', {
     scrollTrigger: {
-      trigger: '.ba',
-      scrub: true,
-      markers: true,
+      trigger: '.layout-1-1',
+      scrub: true
     },
-    x: 200,
-    y: 50,
-    fontSize: 150,
+    x: 1000,
     ease: 'none',
-    duration: 5
+    duration: 1
   });
 };

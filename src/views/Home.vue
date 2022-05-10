@@ -20,15 +20,17 @@ onMounted(() => {
 
 <template>
   <div>
-    <div class="box layout-1 home">
-      <div class="flex items-center column text-main enlarge-animation">
-        <h1 class="fw-400 fs-28 no-wrap">ZH-Blog</h1>
-        <div class="mt-20 mb-20 slogan text-center">路漫漫其修远兮,吾将上下而求索</div>
-        <div class="goBlog no-wrap" @click="goBlog">前往博客</div>
+    <div class="box layout-1 full-screen">
+      <div class="layout-1-1 fixed">
+        <div class="flex items-center column text-main enlarge-animation">
+          <h1 class="fw-400 fs-28 no-wrap">ZH-Blog</h1>
+          <div class="mt-20 mb-20 slogan text-center">路漫漫其修远兮,吾将上下而求索</div>
+          <div class="goBlog no-wrap" @click="goBlog">前往博客</div>
+        </div>
       </div>
     </div>
-    <div class="box layout-2 full-screen" style="background-color: pink;"><div class="ba">123</div></div>
-    <div class="box layout-2 full-screen" style="background-color: orangered;"><div class="b">321</div></div>
+    <div class="box layout-2 full-screen"><div class="ba">123</div></div>
+    <div class="box layout-2 full-screen"><div class="b">321</div></div>
   </div>
   <IconClose @click="toggleOpen" :isClose="isOpen" :size="50" />
   <Menu :show="isOpen" :close-time="400" />
@@ -39,11 +41,8 @@ onMounted(() => {
   width: 100%;
   height: 100vh;
 }
-.home {
-  background-color: #151515;
-}
 .text-main {
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   color: #fff;
@@ -93,5 +92,6 @@ onMounted(() => {
 .full-screen {
   width: 100vw;
   height: 100vh;
+  background-color: #151515;
 }
 </style>
