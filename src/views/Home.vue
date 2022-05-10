@@ -1,28 +1,34 @@
 <script lang="ts" setup>
 import Menu from '@/components/Menu.vue';
 import IconClose from '@/components/IconClose.vue';
+import { animation } from '@/utils/scroll';
 
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 
 const isOpen = ref(false);
 const toggleOpen = () => {
   isOpen.value = !isOpen.value;
 };
 const goBlog = () => {
-  open('/#/blog')
-}
+  open('/#/blog');
+};
+
+onMounted(() => {
+  animation();
+});
 </script>
 
 <template>
   <div>
-    <div class="box home">
+    <div class="box layout-1 home">
       <div class="flex items-center column text-main enlarge-animation">
         <h1 class="fw-400 fs-28 no-wrap">ZH-Blog</h1>
         <div class="mt-20 mb-20 slogan text-center">路漫漫其修远兮,吾将上下而求索</div>
         <div class="goBlog no-wrap" @click="goBlog">前往博客</div>
       </div>
     </div>
-    <!-- <div class="box title fs-32">123</div> -->
+    <div class="box layout-2 full-screen" style="background-color: pink;"><div class="ba">123</div></div>
+    <div class="box layout-2 full-screen" style="background-color: orangered;"><div class="b">321</div></div>
   </div>
   <IconClose @click="toggleOpen" :isClose="isOpen" :size="50" />
   <Menu :show="isOpen" :close-time="400" />
@@ -81,5 +87,11 @@ const goBlog = () => {
     opacity: 1;
     transform: scale(1) translate(-50%, -50%);
   }
+}
+
+// 滚动动画所需
+.full-screen {
+  width: 100vw;
+  height: 100vh;
 }
 </style>

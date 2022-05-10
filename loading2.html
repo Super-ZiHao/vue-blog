@@ -29,22 +29,69 @@
         border: 2px solid transparent;
         border-radius: 50%;
       }
+      .box::after {
+        content: '';
+        position: absolute;
+        left: 8px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
       .one {
         left: 25px;
         top: 50px;
-        border-left: 2px solid red;
-        transform: rotate(120deg);
+        border-left: 2px solid rgb(255, 0, 0);
+        animation: rotate1 2s linear infinite;
       }
       .two {
         right: 25px;
         top: 50px;
-        border-left: 2px solid red;
-        transform: rotate(240deg);
+        border-left: 2px solid rgb(0, 255, 0);
+        animation: rotate2 2s linear infinite;
       }
       .three {
         left: 50px;
-        border-left: 2px solid red;
-        transform: rotate(360deg);
+        border-left: 2px solid rgb(0, 0, 255);
+        animation: rotate3 2s linear infinite;
+      }
+      .one::after {
+        top: 8px;
+        background-color: rgb(255, 0, 0);
+        box-shadow: 0 0 10px rgb(255, 0, 0), 0 0 20px rgb(255, 0, 0), 0 0 30px rgb(255, 0, 0), 0 0 40px rgb(255, 0, 0);
+      }
+      .three::after {
+        top: 8px;
+        background-color: rgb(0, 0, 255);
+        box-shadow: 0 0 10px rgb(0, 0, 255), 0 0 20px rgb(0, 0, 255), 0 0 30px rgb(0, 0, 255), 0 0 40px rgb(0, 0, 255);
+      }
+      .two::after {
+        bottom: 8px;
+        background-color: rgb(0, 255, 0);
+        box-shadow: 0 0 10px rgb(0, 255, 0), 0 0 20px rgb(0, 255, 0), 0 0 30px rgb(0, 255, 0), 0 0 40px rgb(0, 255, 0);
+      }
+      @keyframes rotate1 {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes rotate2 {
+        0% {
+          transform: rotate(360deg);
+        }
+        100% {
+          transform: rotate(0deg);
+        }
+      }
+      @keyframes rotate3 {
+        0% {
+          transform: rotate(-180deg);
+        }
+        100% {
+          transform: rotate(180deg);
+        }
       }
     </style>
   </head>
