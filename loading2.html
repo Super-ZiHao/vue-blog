@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        align-items: center;
+        height: 90vh;
+        justify-content: center;
+        background-color: #1d1e22;
+      }
+
+      .main {
+        position: relative;
+        width: 200px;
+        height: 200px;
+      }
+      .box {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        border: 2px solid transparent;
+        border-radius: 50%;
+      }
+      .one {
+        left: 25px;
+        top: 50px;
+        border-left: 2px solid red;
+        transform: rotate(120deg);
+      }
+      .two {
+        right: 25px;
+        top: 50px;
+        border-left: 2px solid red;
+        transform: rotate(240deg);
+      }
+      .three {
+        left: 50px;
+        border-left: 2px solid red;
+        transform: rotate(360deg);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <div class="box one"></div>
+      <div class="box two"></div>
+      <div class="box three"></div>
+    </div>
+  </body>
+</html>
