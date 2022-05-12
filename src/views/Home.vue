@@ -1,9 +1,13 @@
 <script lang="ts" setup>
+import { onMounted, ref } from 'vue';
 import Menu from '@/components/Menu.vue';
 import IconClose from '@/components/IconClose.vue';
 import { animation } from '@/utils/scroll';
 
-import { ref, onMounted } from 'vue';
+onMounted(() => {
+  animation();
+})
+
 
 const isOpen = ref(false);
 const toggleOpen = () => {
@@ -12,25 +16,21 @@ const toggleOpen = () => {
 const goBlog = () => {
   open('/#/blog');
 };
-
-onMounted(() => {
-  animation();
-});
 </script>
 
 <template>
-  <div>
-    <div class="box layout-1 full-screen">
-      <div class="layout-1-1 fixed">
-        <div class="flex items-center column text-main enlarge-animation">
-          <h1 class="fw-400 fs-28 no-wrap">ZH-Blog</h1>
-          <div class="mt-20 mb-20 slogan text-center">路漫漫其修远兮,吾将上下而求索</div>
-          <div class="goBlog no-wrap" @click="goBlog">前往博客</div>
-        </div>
+  <div class="bg">
+    <div class="box">
+      <div class="flex items-center column text-main enlarge-animation">
+        <h1 class="fw-400 fs-28 no-wrap">ZH-Blog</h1>
+        <div class="mt-20 mb-20 slogan text-center">路漫漫其修远兮,吾将上下而求索</div>
+        <div class="goBlog no-wrap" @click="goBlog">前往博客</div>
       </div>
     </div>
-    <div class="box layout-2 full-screen"><div class="ba">123</div></div>
-    <div class="box layout-2 full-screen"><div class="b">321</div></div>
+    <div class="layout" style="background-color: #1870b4;">
+      <div class="layout-1 vh-full"></div>
+      <div class="layout-2 vh-full"></div>
+    </div>
   </div>
   <IconClose @click="toggleOpen" :isClose="isOpen" :size="50" />
   <Menu :show="isOpen" :close-time="400" />
@@ -40,6 +40,10 @@ onMounted(() => {
 .box {
   width: 100%;
   height: 100vh;
+}
+.layout {
+  position: relative;
+  z-index: 2;
 }
 .text-main {
   position: fixed;
@@ -87,11 +91,7 @@ onMounted(() => {
     transform: scale(1) translate(-50%, -50%);
   }
 }
-
-// 滚动动画所需
-.full-screen {
-  width: 100vw;
-  height: 100vh;
-  background-color: #151515;
+.bg {
+  background-color: #111111;
 }
 </style>

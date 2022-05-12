@@ -1,0 +1,18 @@
+@use "sass:math";
+
+$angle: 60deg;
+$b: 70%;
+$a: math.sin($angle) * $b;
+
+.box2 {
+  height: 300px;
+  width: 300px;
+  border: 6px solid #fff;
+}
+
+.box2-inner {
+  width: $b;
+  height: $a;
+  background: #16E7CF;
+  clip-path: polygon($b/2 0, $b $a, 0 $a);
+}

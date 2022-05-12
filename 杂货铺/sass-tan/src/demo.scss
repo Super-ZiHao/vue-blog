@@ -1,0 +1,40 @@
+@use "sass:math";
+
+$edg: 60deg;
+$b: 70%;
+$a: math.sin($edg) * $b;
+$topY: (50% - $a/2);
+$topX: (50% - $b/2);
+$bottomX: (50% + $b/2);
+$bottomY: (50% + $a/2);
+
+.box {
+  height: 300px;
+  width: 300px;
+  border: 6px solid #fff;
+  position: relative;
+}
+
+.box-inner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  width: $b;
+  height: $a;
+  background: repeating-linear-gradient(to left top,var(--g),var(--g) 5%,var(--t) 5%,var(--t) 10%) 0 0/50% 50%;
+  clip-path: polygon($topX $bottomY, 50% $topY, $bottomX $bottomY);
+  animation: box-3 1s linear infinite;
+}
+
+
+
+@keyframes box-3 {
+  0% {
+      background-position: 15% 0
+  }
+
+  to {
+      background-position: -100% 0
+  }
+}

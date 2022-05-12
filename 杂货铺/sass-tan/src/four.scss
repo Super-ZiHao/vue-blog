@@ -1,0 +1,130 @@
+@use "sass:math";
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	background: radial-gradient(rgba(37, 36, 43, 1), rgba(0, 0, 0, 0) 60%), rgba(24, 21, 33, 1);
+}
+
+.tlayer {
+	position: relative;
+	width: var(--w);
+	height: var(--h);
+	top: 100%;
+	transform-style: preserve-3d;
+	backface-visibility: hidden;
+	perspective: 300rem;
+	transform: rotateY(45deg) translateY(-100%);
+	
+	> * {
+		position: absolute;
+		inset: 0;
+	}
+}
+
+.twrap {
+	--w: min(90vmin, 10rem);
+	
+	/* a */
+	--h: min(180vmin, 20rem);
+	
+	/* b */
+	--o: calc(var(--w) / 2);
+	
+	transform-style: preserve-3d;
+	perspective-origin: center -100%;
+	perspective: 100rem;
+	backface-visibility: hidden;
+	width: var(--w);
+	height: var(--h);
+	margin: 0 auto;
+}
+
+
+
+.tlayer__base {
+	position: absolute;
+	inset: auto auto 0 0;
+	width: var(--w);
+	height: var(--w);
+	background: var(--bg);
+	transform-origin: bottom center;
+	transform: translateZ(-5rem) rotateX(-90deg);
+	
+	&::after {
+		content: '';
+		position: absolute;
+		inset: auto auto 0 0;
+		width: var(--w);
+		height: var(--w);
+		transform: scale(2);
+		background: radial-gradient(circle at center, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0) 65%);
+	}
+}
+
+.controls {
+	position: fixed;
+	top: 0;
+	left: 0;
+	background: rgba(236, 235, 240, 1);
+	border-radius: 0.4rem;
+	margin: 1rem;
+	padding: 1rem;
+	box-shadow: 0.2rem 0.2rem 1rem rgba(0, 0, 0, 1);
+}
+
+.controls__group {
+	display: grid;
+	grid-template-columns: 7rem 1fr;
+	align-items: center;
+}
+
+.tlayer__side {
+	--path: polygon(50% 0, 100% 100%, 0 100%);
+	
+	width: var(--w);
+	height: var(--h);
+	background: 
+		linear-gradient(45deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)),
+		radial-gradient(circle, orchid, orchid 0.15rem, transparent 0), 
+		linear-gradient(#a433eb, #562fee);
+	background-size: 100% 100%, 0.75rem 1.75rem, 100% 100%;
+	-webkit-clip-path: var(--path);
+	clip-path: var(--path);
+	transform-origin: top center;
+	transform: 	
+		rotateY(var(--ry, 0)) 
+		rotateX(var(--angle, 15deg));
+	
+	&:nth-child(2) {
+		--ry: 90deg;
+	}
+	
+	&:nth-child(3) {
+		--ry: -90deg;
+	}
+	
+	&:nth-child(4) {
+		--ry: 180deg;
+	}
+}
+
+@keyframes spin {
+	100% {
+		transform: rotateY(360deg);
+	}
+}
+
+label {
+	margin: 0;
+}
+
+dl {
+	margin-bottom: 0;
+}

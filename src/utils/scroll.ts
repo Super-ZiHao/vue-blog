@@ -1,16 +1,32 @@
-import { gsap } from 'gsap';
-import ScrollToPlugin, { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { gsap } from 'gsap'
+import ScrollToPlugin, { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin)
 
 export const animation = () => {
-  gsap.to('.layout-1-1', {
+  const tl = gsap.timeline({
     scrollTrigger: {
-      trigger: '.layout-1-1',
-      scrub: true
+      trigger: '.layout-2',
+      start: 'top bottom',
+      end: 'bottom 0',
+      scrub: true,
+      markers: true,
     },
-    x: 1000,
-    ease: 'none',
-    duration: 1
-  });
-};
+  })
+  // tl.to('.layout-2',{
+    
+  // })
+}
+
+export const demoAnimation = () => {
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: '#container',
+      start: 'bottom bottom',
+      end: 'bottom 100',
+      scrub: true,
+      markers: true,
+    },
+  })
+  
+}

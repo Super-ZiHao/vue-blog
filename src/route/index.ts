@@ -1,35 +1,39 @@
-import { isBlogMenu, menuList, menuListType } from '@/constant/menu';
-import { useBlogMenuList } from '@/utils/hooks';
-import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
+import { isBlogMenu, menuList, menuListType } from '@/constant/menu'
+import { useBlogMenuList } from '@/utils/hooks'
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 
 // 将筛选出来的进行对象修正
-const routeList = useBlogMenuList().value.map(item => {
+const routeList = useBlogMenuList().value.map((item) => {
   return {
     path: `${item.path}`,
-    component: () => import(`../views/${item.title}.vue`)
-  };
-});
+    component: () => import(`../views/${item.title}.vue`),
+  }
+})
 
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    redirect: 'home'
+    redirect: 'home',
+  },
+  {
+    path: '/demo',
+    component: () => import('@/views/Demo.vue'),
   },
   {
     path: '/home',
-    component: () => import('@/views/Home.vue')
+    component: () => import('@/views/Home.vue'),
   },
   {
     path: '/blog',
     component: () => import('@/views/Blog.vue'),
     redirect: `/blog/${routeList[0].path}`,
-    children: [...routeList]
-  }
-];
+    children: [...routeList],
+  },
+]
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes
-});
+  routes,
+})
 
-export default router;
+export default router

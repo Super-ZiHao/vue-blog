@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { withDefaults, defineProps, VueElement } from 'vue';
+import { withDefaults, VueElement } from 'vue';
 
 withDefaults(
   defineProps<{

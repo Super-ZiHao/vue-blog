@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      #container {
+        background-color: #111111;
+        height: 100vh;
+      }
+      #container div {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 64px;
+      }
+      .main {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+      }
+      .main.one {
+        z-index: 1;
+        background-color: orange;
+      }
+      .main.two {
+        z-index: 2;
+        background-color: purple;
+      }
+      .main.three {
+        z-index: 3;
+        background-color: olivedrab;
+      }
+      .main.four {
+        z-index: 4;
+        background-color: saddlebrown;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div class="main one">one</div>
+      <div class="main two">two</div>
+      <div class="main three">three</div>
+      <div class="main four">four</div>
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
+    <script>
+      const tl = gsap.timeline()
+      tl.from('.one', { yPercent: 100 })
+        .from('.two', { xPercent: -100 })
+        .from('.three', { xPercent: 100 })
+        .from('.four', { yPercent: -100 })
+
+      ScrollTrigger.create({
+        animation: tl,
+        start: 'top top',
+        end: '400% 100%',
+        trigger: '#container',
+        scrub: true,
+        pin: true,
+        anticipatePin: 1,
+      })
+    </script>
+  </body>
+</html>

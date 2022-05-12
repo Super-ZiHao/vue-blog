@@ -1,0 +1,599 @@
+
+$mainColor: #341f97;
+$bodyColor: #5f27cd;
+$cube: cubic-bezier(0.62, 0.02, 0.34, 1);
+$cube2: cubic-bezier(0.87, 0.49, 0, 0.97);
+
+%relative{
+  position: relative;
+}
+
+%left{
+  float: left;
+}
+
+%absolute{
+  position: absolute;
+}
+
+%sticky{
+  position: sticky;
+}
+
+%fixed{
+  position: fixed;
+}
+
+%block{
+  display: block;
+}
+
+%inline-block{
+  display: inline-block;
+}
+
+%table{
+  display: table;
+}
+
+%table-cell{
+  display: table-cell;
+}
+
+%none{
+  display: none;
+}
+
+%right{
+  float:right;
+}
+
+%content{
+  content: '';
+  @extend %block;
+}
+
+%box{
+  display: box;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-box;
+  display: -o-box;
+}
+
+%clearfix{
+  clear: both;
+  &:before,&:after{
+    @extend %content;
+    height: 0;
+    clear: both;
+  }
+}
+
+
+@mixin translate($var1:-50%,$var2:-50%){
+  -webkit-transform: translate($var1,$var2);
+  transform: translate($var1,$var2);
+}
+
+
+@mixin translate3d($var1:-50%,$var2:-50%,$var3:0){
+  -webkit-transform: translate3d($var1,$var2,$var3);
+  transform: translate3d($var1,$var2,$var3);
+}
+
+@mixin box-align($var:center){
+  -webkit-box-align: $var;
+  box-align: $var;
+}
+
+@mixin box-flex($var:1){
+  box-flex:$var;
+  -webkit-box-flex:$var;
+}
+
+@mixin border-radius($var:50%){
+  border-radius: $var;
+  -webkit-border-radius: $var;
+}
+
+@mixin transition($var:all,$var2:1,$var3:linear,$var4:0){
+  transition: $var $var2+s $var3 $var4+s;
+  -webkit-transition: $var $var2+s $var3 $var4+s ;
+}
+
+@mixin rotate($var:90deg){
+  transform:rotate($var);
+  -webkit-transform:rotate($var);
+}
+
+@mixin center($val:width,$key:height){
+  width: $val;
+  height: $key;
+  @extend %absolute;
+  left:50%;
+  top:50%;
+  margin-left: -($val/2);
+  margin-top: -($key/2);
+}
+
+
+@mixin modal-dialog($width:auto,$height:auto,$backgorund:#fff) {
+  @extend %absolute;
+  @include translate();
+  width:$width;
+  height:$height;
+  left:50%;
+  top:50%;
+  background: $backgorund;
+}
+
+@mixin fadeIn($className:fade,$durTime:.3s,$style:linear,$status:infinite){
+  .#{$className}In{
+    animation: $className + 'In' $durTime $style $status;
+  }
+  @keyframes #{$className}In {
+    to{
+      opacity: 1;
+    }
+  }
+}
+
+@mixin twinkle($className:twinkle,$durTime:.3s,$style:linear,$status:infinite){
+  .#{$className}{
+    animation: $className $durTime $style $status;
+  }
+  @keyframes #{$className} {
+    50%{
+      opacity: 1;
+    }
+  }
+}
+
+.spring {
+  @extend %fixed;
+  width: 4.5rem;
+  height: 8rem;
+  left:50%;
+  top: 50%;
+  @include translate();
+  div {
+    width: 100%;
+    height: 100%;
+    @extend %absolute;
+    opacity: 0;
+    will-change: clip-path;
+    @include translate3d(0, 0, 0);
+  }
+}
+
+@for $i from 1 through 34 {
+  .s-#{$i} {
+    // @include transition(all, .01 * $i, linear, .02 * $i);
+    @include transition(all, .5, $cube, .08 * $i);
+    background: darken(#fff, 2% * $i);
+    // background: darken(#cc3433, 2% * $i);
+    @if $i>=5 {
+      background: darken(#fff, 2% * ($i - 5));
+      //   background: darken(#cc3433, 2% * ($i - 5));
+    }
+    @if $i>=15 {
+      background: darken(#fff, 2% * ($i - 8));
+      //   background: darken(#cc3433, 2% * ($i - 8));
+    }
+    @if $i>=30 {
+      background: darken(#fff, 2.6% * ($i - 18));
+      //   background: darken(#cc3433, 2.6% * ($i - 18));
+    }
+    .orange & {
+      background: darken(#f79939, 2.9% * $i);
+      @if $i>=5 {
+        background: darken(#f79939, 2% * ($i - 3));
+      }
+      @if $i>=15 {
+        background: darken(#f79939, 2% * ($i - 8));
+      }
+      @if $i>=30 {
+        background: darken(#f79939, 2.6% * ($i - 18));
+      }
+    }
+    .cloth & {
+      @if $i>=0 {
+        //background: darken(#d41d0f, 2% * $i);
+        background: darken($mainColor, 2% * $i);
+      }
+      @if $i == 7 {
+        //background: darken(#e01216, 6%);
+        background: darken($mainColor, 6%);
+      }
+      @if $i>=8 {
+        //background: darken(#ffa648, 2% * $i);
+        background: darken($mainColor, 2% * $i);
+      }
+      @if $i>=10 {
+        //background: darken(#e53b18, 2% * ($i - 4));
+        background: darken($mainColor, 2% * ($i - 4));
+      }
+      @if $i>=15 {
+        //background: darken(#e55a34, 2% * ($i - 12));
+        background: darken($mainColor, 2% * ($i - 12));
+      }
+      @if $i>=22 {
+        //background: darken(#ca3727, 2% * ($i - 20));
+        background: darken($mainColor, 2% * ($i - 20));
+      }
+      @if $i>=30 {
+        //background: darken(#f79939, 2.6% * ($i - 18));
+        background: darken($mainColor, 2.6% * ($i - 18));
+      }
+    }
+  }
+}
+
+body{
+  background:$bodyColor;
+}
+
+.s-1 {
+  clip-path: polygon(15% 34%, 18% 36%, 22% 35.3%);
+}
+
+.s-2 {
+  clip-path: polygon(24% 26%, 25% 30.5%, 29.8% 30%);
+}
+
+.s-3 {
+  clip-path: polygon(16% 32%, 18% 28%, 22% 29%);
+}
+
+.s-4 {
+  clip-path: polygon(36% 29%, 31.9% 31.9%, 35% 34.5%);
+}
+
+.s-5 {
+  clip-path: polygon(45% 34%, 40% 34%, 39% 38.5%);
+}
+
+.s-6 {
+  clip-path: polygon(50% 45.9%, 59% 48.4%, 54% 49.5%);
+}
+
+.s-7 {
+  clip-path: polygon(51% 56.3%, 55% 48%, 60% 49%);
+  @extend %relative;
+  z-index: 2;
+}
+
+.s-8 {
+  clip-path: polygon(25% 49.2%, 25% 48%, 21% 48%);
+}
+
+.s-9 {
+  clip-path: polygon(25% 50%, 25% 49%, 21% 49.2%);
+}
+
+.s-10 {
+  clip-path: polygon(35% 40%, 31% 42.1%, 35% 43%);
+}
+
+.s-11 {
+  clip-path: polygon(25% 53%, 21% 52%, 21% 58%);
+}
+
+.s-12 {
+  clip-path: polygon(30% 49%, 35% 43%, 34.3% 49%);
+}
+
+.s-13 {
+  clip-path: polygon(20% 38.9%, 24% 42%, 24.3% 38.7%);
+}
+
+.s-14 {
+  clip-path: polygon(45% 40.3%, 48% 32%, 49% 39%);
+}
+
+.s-15 {
+  clip-path: polygon(51% 44.3%, 41% 44.5%, 49% 41.3%);
+}
+
+.s-16 {
+  clip-path: polygon(51% 35%, 52% 40.3%, 58.4% 40.5%);
+}
+
+.s-17 {
+  clip-path: polygon(23% 62.3%, 34% 60%, 33% 66%);
+}
+
+.s-18 {
+  clip-path: polygon(53% 69%, 50% 70%, 53% 62%);
+}
+
+.s-19 {
+  clip-path: polygon(56% 69%, 65% 69%, 59% 65%);
+}
+
+.s-20 {
+  clip-path: polygon(70% 70%, 67% 64%, 70.7% 60.2%);
+}
+
+.s-21 {
+  clip-path: polygon(76% 67.8%, 81% 66.5%, 72% 62%);
+}
+
+.s-22 {
+  clip-path: polygon(61% 49%, 62% 42.5%, 57% 47%);
+}
+
+.s-23 {
+  clip-path: polygon(67% 41%, 61.8% 37%, 64.8% 47%);
+}
+
+.s-24 {
+  clip-path: polygon(76% 40%, 69% 35%, 72% 44%);
+}
+
+.s-25 {
+  clip-path: polygon(81% 45%, 73% 44%, 92% 41%);
+}
+
+.s-26 {
+  clip-path: polygon(88% 48.6%, 84% 46%, 77% 47.8%);
+}
+
+.s-27 {
+  clip-path: polygon(92% 50%, 82% 50%, 77% 52%);
+}
+
+.s-28 {
+  clip-path: polygon(78% 57%, 90% 52%, 75% 54.8%);
+}
+
+.s-29 {
+  clip-path: polygon(87% 62%, 87% 58%, 73.6% 58%);
+}
+
+.s-30 {
+  clip-path: polygon(44% 70.8%, 49% 70%, 39% 67.45%);
+}
+
+.s-31 {
+  clip-path: polygon(54% 75.1%, 57% 73.8%, 55% 70.45%);
+}
+
+.s-32 {
+  clip-path: polygon(41% 61%, 37% 64%, 43% 68%);
+}
+
+.s-33 {
+  clip-path: polygon(66% 65%, 66% 67%, 60% 68.7%);
+}
+
+@keyframes s-8 {
+  25% {
+    clip-path: polygon(31% 38%, 35% 38%, 35% 39.2%);
+  }
+  30% {
+    clip-path: polygon(31% 38.5%, 35% 38%, 35% 39.2%);
+  }
+  35% {
+    clip-path: polygon(31% 38%, 35% 38%, 35% 39.2%);
+  }
+  42% {
+    clip-path: polygon(31% 38.5%, 35% 38%, 35% 39.2%);
+  }
+  44% {
+    clip-path: polygon(31% 38%, 35% 38%, 35% 39.2%);
+  }
+  46% {
+    clip-path: polygon(31% 38.5%, 35% 38%, 35% 39.2%);
+  }
+  48% {
+    clip-path: polygon(31% 38%, 35% 38%, 35% 39.2%);
+  }
+}
+
+@keyframes s-9 {
+  25% {
+    clip-path: polygon(31% 39.2%, 35% 39%, 35% 40%);
+  }
+  30% {
+    clip-path: polygon(31% 38.7%, 35% 39%, 35% 40%);
+  }
+  35% {
+    clip-path: polygon(31% 39.2%, 35% 39%, 35% 40%);
+  }
+  42% {
+    clip-path: polygon(31% 38.7%, 35% 39%, 35% 40%);
+  }
+  44% {
+    clip-path: polygon(31% 39.2%, 35% 39%, 35% 40%);
+  }
+  46% {
+    clip-path: polygon(31% 38.7%, 35% 39%, 35% 40%);
+  }
+  48% {
+    clip-path: polygon(31% 39.2%, 35% 39%, 35% 40%);
+  }
+}
+
+.hen {
+  div {
+    @include translate3d(0, 0, 0);
+    opacity: 1;
+  }
+  .s-1 {
+    clip-path: polygon(32% 36%, 34% 35.3%, 35% 38%);
+  }
+  .s-2 {
+    clip-path: polygon(35% 34.5%, 39.8% 34%, 35% 38%);
+  }
+  .s-3 {
+    clip-path: polygon(42% 34%, 46% 34%, 35% 38%);
+  }
+  .s-4 {
+    clip-path: polygon(45.9% 33.9%, 45% 36.5%, 35% 38%);
+  }
+  .s-5 {
+    clip-path: polygon(45% 37%, 49% 38.5%, 35% 38%);
+  }
+  .s-6 {
+    clip-path: polygon(49% 38.4%, 44% 39.5%, 35% 37.9%);
+  }
+  .s-7 {
+    clip-path: polygon(35% 38%, 40% 39%, 34% 52.3%);
+  }
+  .s-8 {
+    clip-path: polygon(31% 38%, 35% 38%, 35% 39.2%);
+    animation: s-8 3s 2s linear infinite;
+  }
+  .s-9 {
+    animation: s-9 3s 2s linear infinite;
+    clip-path: polygon(31% 39.2%, 35% 39%, 35% 40%);
+  }
+  .s-10 {
+    clip-path: polygon(35% 39%, 31% 42.1%, 35% 43%);
+  }
+  .s-11 {
+    clip-path: polygon(31% 42%, 35% 43%, 31% 48%);
+  }
+  .s-12 {
+    clip-path: polygon(30% 49%, 35% 41%, 34.3% 49%);
+  }
+  .s-13 {
+    clip-path: polygon(30% 48.9%, 34.3% 48.7%, 34% 52%);
+  }
+  .s-14 {
+    clip-path: polygon(40% 39%, 34% 52.3%, 46% 44%);
+  }
+  .s-15 {
+    clip-path: polygon(45% 44.5%, 48% 44.3%, 34% 52.3%);
+  }
+  .s-16 {
+    clip-path: polygon(46% 45%, 53.4% 44.5%, 34% 52.3%);
+  }
+  .s-17 {
+    clip-path: polygon(53% 44.5%, 43% 56%, 34% 52.3%);
+  }
+  .s-18 {
+    clip-path: polygon(53% 44.5%, 43% 55.5%, 49% 58%);
+  }
+  .s-19 {
+    clip-path: polygon(52.9% 44.5%, 48.8% 58%, 59% 57%);
+  }
+  .s-20 {
+    clip-path: polygon(52.7% 44.2%, 58% 56%, 65% 54%);
+  }
+  .s-21 {
+    clip-path: polygon(53% 44.5%, 62% 52%, 68% 50.8%);
+  }
+  .s-22 {
+    clip-path: polygon(53% 44.5%, 57% 37%, 61% 48%);
+  }
+  .s-23 {
+    clip-path: polygon(56.8% 37%, 60.8% 48%, 66% 36%);
+  }
+  .s-24 {
+    clip-path: polygon(65% 37%, 64% 40%, 72% 37%);
+  }
+  .s-25 {
+    clip-path: polygon(64% 40%, 69% 38%, 74% 40%);
+  }
+  .s-26 {
+    clip-path: polygon(64% 40%, 71% 39.8%, 74% 44.6%);
+  }
+  .s-27 {
+    clip-path: polygon(64% 40%, 71% 43%, 74% 50%);
+  }
+  .s-28 {
+    clip-path: polygon(64% 40%, 69% 44.8%, 66% 48%);
+  }
+  .s-29 {
+    clip-path: polygon(64% 40%, 61.6% 46%, 67% 49%);
+  }
+  .s-30 {
+    clip-path: polygon(49% 58%, 54% 57.45%, 49% 61.8%);
+  }
+  .s-31 {
+    clip-path: polygon(49% 61.8%, 54% 57.45%, 51% 62.1%);
+  }
+  .s-32 {
+    clip-path: polygon(49% 61.7%, 43% 63%, 50% 63%);
+  }
+  .s-33 {
+    clip-path: polygon(50% 63%, 49% 61.7%, 56% 63%);
+  }
+}
+
+.mouse {
+  .s-1 {
+    background: #8a7971;
+    clip-path: polygon(22% 29%, 32% 29%, 44% 34%);
+  }
+  .s-2 {
+    background: #494038;
+    clip-path: polygon(22% 29%, 24% 38%, 44% 34%);
+  }
+  .s-3 {
+    background: #4e453d;
+    clip-path: polygon(24% 38%, 27% 41%, 44% 34%);
+  }
+  .s-4 {
+    background: #93705e;
+    clip-path: polygon(27% 41%, 26% 44%, 44% 34%);
+  }
+  .s-5 {
+    background: #9b7862;
+    clip-path: polygon(26% 44%, 27% 53%, 44% 34%);
+  }
+  .s-6 {
+    background: #9b7862;
+    clip-path: polygon(50% 44%, 50% 33%, 44% 34%);
+  }
+  .s-7 {
+    background: #90705b;
+    clip-path: polygon(35% 44%, 50% 44%, 44% 34%);
+  }
+}
+
+.btn-enter {
+  min-width: 3rem;
+  margin: 0 auto;
+  font-size: .24rem;
+  color: #fff;
+  @extend %block;
+  border: 1px solid #fff;
+  @include border-radius(.1rem);
+  text-align: center;
+  padding: .12rem .2rem;
+  @extend %absolute;
+  left: 50%;
+  top: 50%;
+  @include translate(-50%, 4rem);
+  @include transition(all, .4, $cube, 3);
+  opacity: 0;
+  &.active {
+    opacity: 1;
+  }
+  &:hover {
+    background: $mainColor;
+    color: #fff;
+    border: 1px solid $mainColor;
+  }
+}
+
+
+.springText{
+  font-size:20px;
+  position:absolute;
+  left:50%;
+  top:50%;
+  @include translate(-50%,-50%);
+  color:#fff;
+  text-align:center;
+  p{
+    margin-top:14px;
+    font-size:12px;
+  }
+}
+
+

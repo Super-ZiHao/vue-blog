@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { defineProps, ref, watch } from 'vue';
+import { ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import { menuList, isBlogMenu } from '@/constant/menu';
 
@@ -31,7 +31,7 @@ const handleOpenPath = (path: string) => {
 </script>
 
 <template>
-  <div>
+  <div class="relative" style="z-index:3">
     <div :class="`mask ${show ? 'show' : 'unShow'}`" :style="{ display: isClose ? 'block' : 'none' }"></div>
     <div :class="`main ${show ? 'open' : ''}`">
       <div class="main-bg"></div>

@@ -1,0 +1,18 @@
+@use "sass:math";
+
+$angle: 45deg;
+$b: 100%;
+$a: math.tan($angle) * $b;
+
+.box {
+  height: 300px;
+  width: 300px;
+  background: blue;
+}
+
+.box-inner {
+  width: $b;
+  height: $a;
+  background: green;
+  clip-path: polygon($b 0, $b $a, 0 $a);
+}
