@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background-color: #111;
+      }
+    </style>
+  </head>
+  <body>
+    <svg xmls="http://www.w3.org/2000/svg" style="width: 99vw; height: 99vh">
+      <text id="sintext" x="50" y="300" fill="#fff" style="font-size: 32px">不渴望能够一跃千里，只希望每天能够前进一步</text>
+    </svg>
+  </body>
+  <script>
+    let fontLength = sintext.innerHTML.length, // 文字个数
+      x = [], // 文字之间的间距
+      y = null, // 文字上下间距
+      i = fontLength,
+      s = 60,
+      w = 0.02,
+      t = 0;
+
+    while (i--) x.push(30); // 给文字加上间距 30
+
+    const arrange = t => {
+      y = [];
+      let ly = 0,
+        dy;
+      for (let i = 0; i < fontLength; ++i) {
+        cy = -s * Math.sin(w * i * 20 + t);
+        y.push(cy - ly);
+        ly = cy;
+      }
+    };
+
+    const render = () => {
+      sintext.setAttribute('dx', x.join(' '));
+      sintext.setAttribute('dy', y.join(' '));
+    };
+
+    const frame = () => {
+      t += 0.04;
+      arrange(t);
+      render();
+      requestAnimationFrame(frame);
+    };
+    frame();
+  </script>
+</html>

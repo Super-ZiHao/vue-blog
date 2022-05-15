@@ -11,7 +11,7 @@ const blogMenuList = useBlogMenuList();
 <template>
   <div>
     <header class="flex items-center justify-between pl-20 pr-20 header">
-      <div>logo</div>
+      <div></div>
       <ElMenu class="menu" mode="horizontal" router :default-active="currentPath" :unique-opened="true">
         <ElMenuItem v-for="item in blogMenuList" :key="item.id" :index="item.path">{{ item.title }}</ElMenuItem>
       </ElMenu>

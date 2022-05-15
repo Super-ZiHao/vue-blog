@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div style="display: flex; justify-content: center">
+      <svg style="height: 200px; width: 800px">
+        <path
+          id="path1"
+          d="M 100 100
+                            Q 200 0 300 100
+                            T 500 100"
+          stroke="#000"
+          fill="none"
+        />
+        <text style="font-size: 24px" fill="#000" stroke="#000">
+          <textPath xlink:href="#path1">这个文字先上去，又下来了。Upside down in english!</textPath>
+        </text>
+      </svg>
+    </div>
+  </body>
+</html>

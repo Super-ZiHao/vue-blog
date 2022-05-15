@@ -45,6 +45,12 @@ export const HistoryDataList: HistoryDataListType[] = [
     path: 'sass',
     time: '2022-02-03'
   },
+  {
+    id: 13,
+    title: 'SVG',
+    path: 'svg',
+    time: '2022-05-13'
+  }
 ];
 
 export const haveLearning: number[] = [11, 12];

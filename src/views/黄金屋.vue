@@ -5,23 +5,25 @@ import { BlogTitleEnum, IconsEnum } from '@/constant/enum';
 import { getTime, handleString } from '@/utils/index';
 import TS from '@/components/TS.vue';
 import CSS from '../components/CSS.vue';
+import { isNull } from 'lodash';
 
 // 左侧打开链接
 const handleGoPath = (path: string | undefined, title: string, list: ListType) => {
   if (title === BlogTitleEnum.MEI_RI_YI_WEN) {
     open(`https://super-zihao.github.io/learning/#/every-day?id=_${list.time}、${handleString(list.text)}`);
   }
-  if ( title === BlogTitleEnum.STYLE ) {
-    open(`https://super-zihao.github.io/learning/#/unusualcss?id=${list.path}`)
+  if (title === BlogTitleEnum.STYLE) {
+    open(`https://super-zihao.github.io/learning/#/unusualcss?id=${list.path}`);
   }
   if (!path) return;
   open(path);
 };
 
 // 打开文章
-const handleOpenArticle = (path: string) => {
+const handleOpenArticle = (path: string | null) => {
+  if (isNull(path)) return;
   open(`https://super-zihao.github.io/learning/#/article/${path}`);
-}
+};
 </script>
 
 <template>
@@ -31,9 +33,10 @@ const handleOpenArticle = (path: string) => {
         <div class="title p-8">{{ item.title }}</div>
         <ul class="list p-8 fs-14">
           <li class="flex items-center justify-between pt-4 pb-4" v-for="(listItem, listIndex) in item.list" :key="listItem.time">
-            <span class="text cp no-wrap overflow-hidden ellipsis" :title="listItem.text" :style="{ width: item.title !== BlogTitleEnum.MEI_RI_YI_WEN ? '100%' : '75%' }" @click="handleGoPath(listItem.path, item.title, listItem)"
-              ><span class="ff-num">{{ listIndex + 1 }}、</span>{{ listItem.text }}</span
-            >
+            <span class="text cp no-wrap overflow-hidden ellipsis" :title="listItem.text" :style="{ width: item.title !== BlogTitleEnum.MEI_RI_YI_WEN ? '100%' : '75%' }" @click="handleGoPath(listItem.path, item.title, listItem)">
+              <span class="ff-num">{{ listIndex + 1 }}、</span>
+              <span class="link">{{ listItem.text }}</span>
+            </span>
             <span class="ff-num">{{ listItem?.time }}</span>
           </li>
         </ul>
@@ -41,7 +44,7 @@ const handleOpenArticle = (path: string) => {
     </aside>
     <div class="main">
       <div v-for="(item, index) in Article" :class="`relative item radius-12 p-8 ${index > 0 ? 'mt-16' : ''}`" :key="item.title">
-        <div class="cp" @click="handleOpenArticle(item.path)">
+        <div :class="`${isNull(item.path) ? 'cd' : 'cp'}`" @click="handleOpenArticle(item.path)">
           <div class="flex items-center fs-12 color-0">
             <div>{{ getTime(item.time) }}</div>
             <ElDivider v-if="item.subtitle" direction="vertical" />
@@ -85,6 +88,12 @@ const handleOpenArticle = (path: string) => {
   .list {
     overflow-y: auto;
     max-height: 350px;
+    .link {
+      &:hover {
+        color: #4e5ec2;
+        text-decoration: underline;
+      }
+    }
   }
 }
 

@@ -92,7 +92,7 @@ type ArticleType = {
   synopsis: string
   front: { path: string; title: string }[]
   icon: iconType
-  path: string
+  path: string | null
 }
 export const Article: ArticleType[] = [
   {
@@ -108,7 +108,7 @@ export const Article: ArticleType[] = [
       },
     ],
     icon: 'TypeScript',
-    path: 'lessAndsass',
+    path: null,
   },
   {
     title: 'Sass 与 Less 的大同小异',
@@ -127,6 +127,6 @@ export const Article: ArticleType[] = [
       },
     ],
     icon: 'CSS',
-    path: 'ts-technique',
+    path: null,
   },
 ]
