@@ -7,8 +7,7 @@ import BlogTitle from '@/components/home/BlogTitle.vue';
 
 onMounted(() => {
   animation();
-})
-
+});
 
 const isOpen = ref(false);
 const toggleOpen = () => {
@@ -23,12 +22,12 @@ const goBlog = () => {
   <div class="bg">
     <div class="box">
       <div class="flex items-center column text-main">
-        <BlogTitle :isPc="true" />
+        <BlogTitle />
         <div class="mt-20 mb-20 slogan text-center">不渴望能够一跃千里,只希望每天能够前进一步</div>
         <div class="goBlog no-wrap" @click="goBlog">前往博客</div>
       </div>
     </div>
-    <div class="layout" style="background-color: #1870b4;">
+    <div class="layout" style="background-color: #1870b4">
       <div class="layout-1 vh-full"></div>
       <div class="layout-2 vh-full"></div>
     </div>
