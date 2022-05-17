@@ -36,7 +36,7 @@ const handleOpenPath = (path: string) => {
     <div :class="`main ${show ? 'open' : ''}`">
       <div class="main-bg"></div>
       <ul :class="`menu ${show ? 'show' : ''}`">
-        <li class="menu-item transition" v-for="item in menuList" :key="item.id" @click="handleOpenPath(item.path)">{{ item.title }}</li>
+        <li class="menu-item transition" v-for="item in menuList" :key="item.id" @click="handleOpenPath(item.path)"><span class="text">{{ item.title }}</span></li>
       </ul>
     </div>
   </div>
@@ -104,10 +104,33 @@ const handleOpenPath = (path: string) => {
   .menu-item {
     display: flex;
     align-items: center;
-    color: #787a77;
     font-size: 24px;
     height: 40px;
     cursor: pointer;
+    .text {
+      position: relative;
+      color: #787a77;
+      transition: color 0.3s;
+      &::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        bottom: 40%;
+        width: 120%;
+        height: 2px;
+        background-color: #21c31c;
+        transform: translate(-50%, -50%) scaleX(0);
+        transform-origin: right;
+        transition: transform 0.3s;
+      }
+      &:hover{
+        color: #95a5a6;
+        &::after {
+          transform: translate(-50%, -50%) scaleX(1);
+          transform-origin: left;
+        }
+      }
+    }
     &:hover {
       color: #575857;
     }

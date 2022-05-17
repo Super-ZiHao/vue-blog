@@ -3,6 +3,7 @@ import { onMounted, ref } from 'vue';
 import Menu from '@/components/Menu.vue';
 import IconClose from '@/components/IconClose.vue';
 import { animation } from '@/utils/scroll';
+import BlogTitle from '@/components/home/BlogTitle.vue';
 
 onMounted(() => {
   animation();
@@ -21,8 +22,8 @@ const goBlog = () => {
 <template>
   <div class="bg">
     <div class="box">
-      <div class="flex items-center column text-main enlarge-animation">
-        <h1 class="fw-400 fs-28 no-wrap">zh - little broken website</h1>
+      <div class="flex items-center column text-main">
+        <BlogTitle :isPc="true" />
         <div class="mt-20 mb-20 slogan text-center">不渴望能够一跃千里,只希望每天能够前进一步</div>
         <div class="goBlog no-wrap" @click="goBlog">前往博客</div>
       </div>
@@ -51,7 +52,7 @@ const goBlog = () => {
   left: 50%;
   color: #fff;
   transform-origin: left top;
-  transform: scale(0) translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 .slogan {
