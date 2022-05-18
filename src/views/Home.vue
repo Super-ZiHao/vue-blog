@@ -8,8 +8,7 @@ import BlogTitletwo from '@/components/home/BlogTitletwo.vue';
 
 onMounted(() => {
   animation();
-})
-
+});
 
 const isOpen = ref(false);
 const toggleOpen = () => {
@@ -24,13 +23,13 @@ const goBlog = () => {
   <div class="bg">
     <div class="box">
       <div class="flex items-center column text-main">
-        <BlogTitle :isPc="true" />
+        <BlogTitle />
         <BlogTitletwo />
         <div class="mt-20 mb-20 slogan text-center">不渴望能够一跃千里,只希望每天能够前进一步</div>
         <div class="goBlog no-wrap" @click="goBlog">前往博客</div>
       </div>
     </div>
-    <div class="layout" style="background-color: #1870b4;">
+    <div class="layout" style="background-color: #1870b4">
       <div class="layout-1 vh-full"></div>
       <div class="layout-2 vh-full"></div>
     </div>
@@ -44,10 +43,12 @@ const goBlog = () => {
   width: 100%;
   height: 100vh;
 }
+
 .layout {
   position: relative;
   z-index: 2;
 }
+
 .text-main {
   position: fixed;
   top: 50%;
@@ -94,6 +95,7 @@ const goBlog = () => {
     transform: scale(1) translate(-50%, -50%);
   }
 }
+
 .bg {
   background-color: #111111;
 }
