@@ -4,6 +4,7 @@ import Menu from '@/components/Menu.vue';
 import IconClose from '@/components/IconClose.vue';
 import { animation } from '@/utils/scroll';
 import BlogTitle from '@/components/home/BlogTitle.vue';
+import BlogTitletwo from '@/components/home/BlogTitletwo.vue';
 
 onMounted(() => {
   animation();
@@ -24,6 +25,7 @@ const goBlog = () => {
     <div class="box">
       <div class="flex items-center column text-main">
         <BlogTitle :isPc="true" />
+        <BlogTitletwo />
         <div class="mt-20 mb-20 slogan text-center">不渴望能够一跃千里,只希望每天能够前进一步</div>
         <div class="goBlog no-wrap" @click="goBlog">前往博客</div>
       </div>
