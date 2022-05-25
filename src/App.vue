@@ -6,6 +6,10 @@
 
 <style lang="scss">
 @import 'element-plus/dist/index.css';
+// 原子类样式
+@import '@/scss/index.scss';
+// animate.scss
+@import '@/scss/animate.scss';
 
 :root {
   --bg-color: rgba(255, 255, 255, 1);
@@ -33,15 +37,19 @@
   font-family: 'PingFang SC';
   box-sizing: border-box;
 }
+
 body {
   overflow: overlay;
 }
+
 ul li {
   list-style: none;
 }
+
 ::-webkit-scrollbar {
   width: 4px;
 }
+
 ::-webkit-scrollbar-thumb {
   background-color: #275ca2;
 }
@@ -50,6 +58,7 @@ a {
   color: #4e5ec2;
   text-decoration: none;
 }
+
 a:hover {
   color: #8791d0;
   text-decoration: underline;
@@ -80,6 +89,7 @@ a:hover {
   font-size: 40px;
   color: #fff;
   margin-right: 16px;
+
   @media screen and (min-width: 800px) {
     top: 50%;
     transform: translateY(-50%);

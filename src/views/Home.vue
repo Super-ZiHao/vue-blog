@@ -3,8 +3,8 @@ import { onMounted, ref } from 'vue';
 import Menu from '@/components/Menu.vue';
 import IconClose from '@/components/IconClose.vue';
 import { animation } from '@/utils/scroll';
+// import BlogTitle from '@/components/home/BlogTitle.vue';
 import BlogTitle from '@/components/home/BlogTitle.vue';
-import BlogTitletwo from '@/components/home/BlogTitletwo.vue';
 
 onMounted(() => {
   animation();
@@ -23,10 +23,10 @@ const goBlog = () => {
   <div class="bg">
     <div class="box">
       <div class="flex items-center column text-main">
+        <!-- <BlogTitle /> -->
         <BlogTitle />
-        <BlogTitletwo />
-        <div class="mt-20 mb-20 slogan text-center">不渴望能够一跃千里,只希望每天能够前进一步</div>
-        <div class="goBlog no-wrap" @click="goBlog">前往博客</div>
+        <div class="mt-24 mb-20 slogan text-center">I don't want to jump thousands of miles in one step. I just want to take a step forward every day</div>
+        <div class="goBlog no-wrap" @click="goBlog">Go Blog</div>
       </div>
     </div>
     <div class="layout" style="background-color: #1870b4">
@@ -51,6 +51,7 @@ const goBlog = () => {
 
 .text-main {
   position: fixed;
+  width: 90%;
   top: 50%;
   left: 50%;
   color: #fff;
@@ -59,7 +60,7 @@ const goBlog = () => {
 }
 
 .slogan {
-  letter-spacing: 10px;
+  letter-spacing: 3px;
 }
 
 .goBlog {

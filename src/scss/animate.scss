@@ -1,0 +1,13 @@
+@keyframes line-animate {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes fill-animate {
+  from {
+    color: #111;
+  }
+  to {
+    color: white;
+  }
+}
