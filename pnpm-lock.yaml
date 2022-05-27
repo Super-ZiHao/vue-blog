@@ -1,4 +1,4 @@
-lockfileVersion: 5.4
+lockfileVersion: 5.3
 
 specifiers:
   '@types/node': ^17.0.29
@@ -6,7 +6,6 @@ specifiers:
   '@vitejs/plugin-vue': ^2.3.1
   element-plus: ^2.1.11
   gsap: ^3.10.4
-  lodash: ^4.17.21
   sass: ^1.51.0
   three: ^0.139.2
   typescript: ^4.5.4
@@ -18,7 +17,6 @@ specifiers:
 dependencies:
   element-plus: 2.1.11_vue@3.2.33
   gsap: 3.10.4
-  lodash: 4.17.21
   sass: 1.51.0
   three: 0.139.2
   vue: 3.2.33
@@ -318,7 +316,7 @@ packages:
       escape-html: 1.0.3
       lodash: 4.17.21
       lodash-es: 4.17.21
-      lodash-unified: 1.0.2_3ib2ivapxullxkx3xftsimdk7u
+      lodash-unified: 1.0.2_da03a4540fbd16bbaafbb96724306afd
       memoize-one: 6.0.0
       normalize-wheel-es: 1.1.2
       vue: 3.2.33
@@ -615,7 +613,7 @@ packages:
     resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
     dev: false
 
-  /lodash-unified/1.0.2_3ib2ivapxullxkx3xftsimdk7u:
+  /lodash-unified/1.0.2_da03a4540fbd16bbaafbb96724306afd:
     resolution: {integrity: sha512-OGbEy+1P+UT26CYi4opY4gebD8cWRDxAT6MAObIVQMiqYdxZr1g3QHWCToVsm31x2NkLS4K3+MC2qInaRMa39g==}
     peerDependencies:
       '@types/lodash-es': '*'

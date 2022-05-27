@@ -3,20 +3,19 @@ import { ElDivider } from 'element-plus';
 import { ConstantArticle } from '@/constant/blog';
 import { getTime } from '@/utils/index';
 import { IconsEnum } from '@/constant/enum';
-import { isNull } from 'lodash';
 import TS from './TS.vue';
 import CSS from './CSS.vue';
 
 // 打开文章
 const handleOpenArticle = (path: string | null) => {
-  if (isNull(path)) return;
+  if (!(typeof path === 'string')) return;
   open(`https://super-zihao.github.io/learning/#/article/${path}`);
 };
 </script>
 
 <template>
   <div v-for="(item, index) in ConstantArticle" :class="`relative item radius-12 p-8 ${index > 0 ? 'mt-16' : ''}`" :key="item.title">
-    <div :class="`${isNull(item.path) ? 'cd' : 'cp'}`" @click="handleOpenArticle(item.path)">
+    <div :class="`${!(typeof item.path === 'string') ? 'cd' : 'cp'}`" @click="handleOpenArticle(item.path)">
       <div class="flex items-center fs-12 color-0">
         <div>{{ getTime(item.time) }}</div>
         <ElDivider v-if="item.subtitle" direction="vertical" />

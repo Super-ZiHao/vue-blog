@@ -3,14 +3,13 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite --port 4000",
+    "dev": "vite --port 4000 --open",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
     "element-plus": "^2.1.11",
     "gsap": "^3.10.4",
-    "lodash": "^4.17.21",
     "sass": "^1.51.0",
     "three": "^0.139.2",
     "vue": "^3.2.25",
